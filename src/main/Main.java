@@ -2,10 +2,11 @@ package main;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-        //Filtar
+
         //Obtener la cantidad de usuarios con una edad mayor a 18 y su username comience con R.
 
         List<User> users = new ArrayList<>();
@@ -16,10 +17,9 @@ public class Main {
         users.add(new User("Luisa", 24));
         users.add(new User("Pedro", 21));
 
-        long cantidad =  users.stream()//1
-                .filter(user -> user.getAge() > 18)//2
-                .filter(user -> user.getUsername().startsWith("R"))//3
-                .count();//4
-        System.out.println(cantidad);
+        List<User> newUsers =  users.stream()
+                                    .filter(user -> user.getAge() > 18)
+                                    .collect(Collectors.toList());
+        System.out.println(newUsers);
     }
 }
